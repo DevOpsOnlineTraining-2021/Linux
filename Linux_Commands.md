@@ -101,7 +101,13 @@
     
     ls -R ${path}
 
+#### 12. If the directory exists, find the Size of each directory under the path /var/lib/jenkins/workspace
 
+        dir_test="/var/lib/jenkins/workspace/"
+
+        if [ -d "$dir_test" ] && [ -x "$dir_test" ]; then
+            du -shc /var/lib/jenkins/workspace/*
+        fi
 
 
 
