@@ -220,4 +220,42 @@
 
 7.1. Create two ec2 instances with Red Hat Linux AMI.
 
-7.2. Connect server1 and create a new user and setup password using Step-2 (above)
+7.2. Connect server-1 and create a new user and setup password using Step-2 (above)
+
+	username: server1
+	Password: server1
+
+7.3. Connect server2 and create a new user and setup password using Step-2 (above)
+
+	username: server2
+	Password: server2
+
+7.4. Go to server-1 and login to new user 'server1'.
+
+	su - server1
+
+7.5. Generate ssh key using the command: ssh-keygen -t rsa
+
+	ssh-keygen -t rsa (press enter for all options, don't give any value for any option)
+
+	Sample output: 
+	[server1@ip-172-31-42-239 ~]$ ssh-keygen -t rsa
+	Generating public/private rsa key pair.
+	Enter file in which to save the key (/home/server1/.ssh/id_rsa):
+	Created directory '/home/server1/.ssh'.
+	Enter passphrase (empty for no passphrase):
+	Enter same passphrase again:
+	Your identification has been saved in /home/server1/.ssh/id_rsa.
+	Your public key has been saved in /home/server1/.ssh/id_rsa.pub.
+	
+7.6. Copy the pulic key from /home/server1/.ssh/id_rsa.pub
+
+	cat /home/server1/.ssh/id_rsa.pub
+	
+7.7. Connect to other server-2, and login to 'server2' user.
+
+	ssh server2@server2-ip-address
+	
+	vi .ssh/authorized_keys
+	
+	
