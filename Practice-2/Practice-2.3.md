@@ -21,6 +21,9 @@
 
 ##### 2. setup/create a new user "devops" on RHEL Linux server
 
+
+    sudo -i (login to root user)
+
     cat /etc/passwd (just observe this file before user setup)
 
     useradd <username>
@@ -213,3 +216,8 @@
 			sudo -i (login to root user)
 			cp /home/user1/file /home/user2/file
 
+##### 7. SSH connection
+
+7.1. Create two ec2 instances with Red Hat Linux AMI.
+
+7.2. Connect server1 and create a new user and setup password using Step-2 (above)
