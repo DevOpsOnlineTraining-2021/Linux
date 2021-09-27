@@ -252,10 +252,28 @@
 
 	cat /home/server1/.ssh/id_rsa.pub
 	
+	ssh-copy-id server2@server2-pub-ip-address
+	enter password:
+	
+	.ssh/authorized_keys > this file will be created in server2
+	
+	If this is not working go to manual setup 7.7.
+	
 7.7. Connect to other server-2, and login to 'server2' user.
 
 	ssh server2@server2-ip-address
 	
 	vi .ssh/authorized_keys
 	
+	paste the copied key and save the file.
+
+7.8. Go back to server-1 and try the connection (see below image, its connected without asking any password)
+
+	ssh server2@server2-pub-ip-address
 	
+![image](https://user-images.githubusercontent.com/24622526/134868577-6f9ddb97-c17b-4745-b625-ae07669693fc.png)
+
+
+From this practice step-7.1 to 7.8, we can understand how to connect from one server (server-1) to another server(server-2). 
+
+
