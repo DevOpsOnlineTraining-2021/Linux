@@ -4,7 +4,7 @@
 
 	ssh -i "private-key" user-name@server-name (login with ssh key and username)
 
-	ssh user-name@server-name  (if user public key is already added to the target server)
+	ssh user-name@server-name  (if user public key is already added to the target server or enter the password)
 
 	ssh user-name@server-public-ip
 
