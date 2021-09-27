@@ -1,131 +1,131 @@
 ##### 1. Create AWS EC2 REDHAT instance (Linux server)
 
-		Systemx to connect to Linux server:
+	Systemx to connect to Linux server:
 
-		ssh -i "private-key" user-name@server-name (login with ssh key and username)
+	ssh -i "private-key" user-name@server-name (login with ssh key and username)
 
-		ssh user-name@server-name  (if user public key is already added to the target server)
+	ssh user-name@server-name  (if user public key is already added to the target server)
 
-		ssh user-name@server-public-ip
+	ssh user-name@server-public-ip
 
-		ssh user-name@server-private-ip (if connecting to the serevr within the same network)
+	ssh user-name@server-private-ip (if connecting to the serevr within the same network)
 
-		ex: 
+	ex: 
 
-		ssh -i "rhel.pem" ec2-user@ec2-3-80-91-11.compute-1.amazonaws.com
+	ssh -i "rhel.pem" ec2-user@ec2-3-80-91-11.compute-1.amazonaws.com
 
-		ssh -i "rhel.pem" ec2-user@3.80.91.11
+	ssh -i "rhel.pem" ec2-user@3.80.91.11
 
 > Note: 'ssh' full form - secure shell, ssh service running at port number 22. Make sure port number 22 is open if linux server is going to be connected using ssh.
 
 
 ##### 2. setup/create a new user "devops" on RHEL Linux server
 
-	    cat /etc/passwd (just observe this file before user setup)
+    cat /etc/passwd (just observe this file before user setup)
 
-	    useradd <username>
-	    ex: useradd devops (create a new user)
+    useradd <username>
+    ex: useradd devops (create a new user)
 
-	    passwd <userName>
-	    ex: passwd devops (setup the password for the user 'devops')
+    passwd <userName>
+    ex: passwd devops (setup the password for the user 'devops')
 
-	    cat /etc/passwd (just observe this file after user setup)
+    cat /etc/passwd (just observe this file after user setup)
 
-	    sudo vi /etc/ssh/sshd_config (uncomment below two lines)
+    sudo vi /etc/ssh/sshd_config (uncomment below two lines)
 
-	      Port 22
+      Port 22
 
-	      PasswordAuthentication yes
+      PasswordAuthentication yes
 
-	    sudo systemctl restart sshd.service #(REDHAT/Linux)
-	    sudo systemctl restart ssh (Ubuntu)
+    sudo systemctl restart sshd.service #(REDHAT/Linux)
+    sudo systemctl restart ssh (Ubuntu)
 
 ##### 3. Connect to the Linux server using new user "devops"
 
-		ssh user-name@server-name/server-public-ip
+	ssh user-name@server-name/server-public-ip
 
-		ssh devops@3.80.91.11
+	ssh devops@3.80.91.11
 
-		whoami
+	whoami
 
-		sudo bash
+	sudo bash
 
-		sudo -i
+	sudo -i
 
-		sudo su -
+	sudo su -
 
-		su - <username>
-		ex: su - devops
+	su - <username>
+	ex: su - devops
 
-		#change the user home directory
-		usermod -m -d /home/devops2 devops
+	#change the user home directory
+	usermod -m -d /home/devops2 devops
 
-		cd ~
-		
+	cd ~
+
 ##### 4. adding sudo permissions to new user
 
-		usermod –aG sudo [username]   - Ubuntu
+	usermod –aG sudo [username]   - Ubuntu
 
-		usermod –aG wheel [username]  - RedHat
+	usermod –aG wheel [username]  - RedHat
 
-		usermod -aG wheel devops (adding to wheel group i.e, giving sudo permissions)
+	usermod -aG wheel devops (adding to wheel group i.e, giving sudo permissions)
 
-		(OR) 
+	(OR) 
 
-		update the file "/etc/sudoers" with below content
+	update the file "/etc/sudoers" with below content
 
-		visudo (or) vi "/etc/sudoers"
+	visudo (or) vi "/etc/sudoers"
 
-		devops ALL=(ALL)       ALL
+	devops ALL=(ALL)       ALL
 
 > Note: "sudo" stands for "SuperUser DO" and is used to access restricted files and operations. By default, Linux restricts access to certain parts of the system preventing sensitive files from being compromised. The sudo command temporarily elevates privileges allowing users to complete sensitive tasks without logging in as the root user.
 
-		yum install git -y
+	yum install git -y
 
-		sudo yum install git -y
+	sudo yum install git -y
 
-		git --version
+	git --version
 
-		yum remove git
+	yum remove git
 
-		sudo yum remove git -y
+	sudo yum remove git -y
 
-		git --version
+	git --version
 
 > Ref: https://unix.stackexchange.com/questions/291454/difference-between-sudo-user-and-root-user
 
 ##### 5. User Groups and Permissions in Linux
 
-		https://www.pluralsight.com/blog/it-ops/linux-file-permissions
+> Ref-1: https://www.pluralsight.com/blog/it-ops/linux-file-permissions
 
-		copying-files-from-one-user-to-another-in-a-single-machine: https://www.guru99.com/file-permissions.html#:~:text=There%20are%20three%20user%20types,into%20Absolute%20and%20Symbolic%20mode
+> Ref-2: copying-files-from-one-user-to-another-in-a-single-machine: https://www.guru99.com/file-permissions.html#:~:text=There%20are%20three%20user%20types,into%20Absolute%20and%20Symbolic%20mode
 
-		https://www.guru99.com/file-permissions.html
+> Ref-3: https://www.guru99.com/file-permissions.html
 
-		-rw-rw-r--. 1 devops devops  0 May 12 16:07 new.txt
-		drwxrwxr-x. 2 devops devops  6 May 12 16:11 dir
+	-rw-rw-r--. 1 devops devops  0 May 12 16:07 new.txt
+	drwxrwxr-x. 2 devops devops  6 May 12 16:11 dir
 
-		-rw-rw-r--
+	-rw-rw-r--
 
-		r = read permission
-		w = write permission
-		x = execute permission
-		- = no permission
-
-
-		- > file type
-		d > directory type
-
-		The first part of the code is 'rw-'. This suggests that the owner 'devops' can: read, write but no execute permissions
-
-		second part "rw-" - group permissions
-
-		third part "r--" - others
+	r = read permission
+	w = write permission
+	x = execute permission
+	- = no permission
 
 
-		useradd user1
+	- > file type
+	d > directory type
 
-		touch user1.txt
+	The first part of the code is 'rw-'. This suggests that the owner 'devops' can: read, write but no execute permissions
+
+	second part "rw-" - group permissions
+
+	third part "r--" - others
+
+
+	useradd user1
+
+	touch user1.txt
 
 ##### 6. Permissions
 
