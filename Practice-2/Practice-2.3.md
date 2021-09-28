@@ -1,6 +1,8 @@
 ##### 1. Create AWS EC2 REDHAT instance (Linux server)
 
 	Systemx to connect to Linux server:
+	
+	ssh - secure shell
 
 	ssh -i "private-key" user-name@server-name (login with ssh key and username)
 
