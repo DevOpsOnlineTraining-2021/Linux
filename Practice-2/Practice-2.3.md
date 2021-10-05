@@ -94,6 +94,8 @@
 	sudo yum install git -y
 
 	git --version
+	
+	find / -name "git"
 
 	yum remove git
 
