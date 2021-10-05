@@ -17,6 +17,10 @@
 	ssh -i "rhel.pem" ec2-user@ec2-3-80-91-11.compute-1.amazonaws.com
 
 	ssh -i "rhel.pem" ec2-user@3.80.91.11
+	
+	ssh ec2-user@3.80.91.11
+	> Enter the password: 
+	
 
 > Note: 'ssh' full form - secure shell, ssh service running at port number 22. Make sure port number 22 is open if linux server is going to be connected using ssh.
 
