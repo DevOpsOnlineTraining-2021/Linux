@@ -1,6 +1,14 @@
 
 # Practice-1: Course
 
+![image](https://user-images.githubusercontent.com/24622526/135983714-2a0d393b-ec17-4e9c-9f20-723d96372415.png)
+
+
+![image](https://user-images.githubusercontent.com/24622526/135984252-d379b037-00ed-493f-9a9e-9b97d4e97267.png)
+
+
+
+
   1. Linux Archetecture (Understand files/folder structure of Linux operating system)
 
   2. Linux basic commands:
