@@ -230,10 +230,18 @@
 
 7.2. Connect server-1 and create a new user and setup password using Step-2 (above)
 
+	useradd server1
+	
+	passwd server1
+
 	username: server1
 	Password: server1
 
 7.3. Connect server2 and create a new user and setup password using Step-2 (above)
+
+	useradd server2
+	
+	passwd server2
 
 	username: server2
 	Password: server2
@@ -284,4 +292,10 @@
 
 From this practice step-7.1 to 7.8, we can understand how to connect from one server (server-1) to another server(server-2). 
 
+7.9. copy the files form server1 to server2
 
+	scp <source-files> server2@server2-ip:<destiname-path>
+	
+	scp sample.txt server2@18.98.78.87:${HOME}/sampleDir/
+	
+	
